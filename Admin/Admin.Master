@@ -34,6 +34,15 @@
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/jquery.mCustomScrollbar.css">
 
+    <!-- Datatable start-->
+    <link rel="stylesheet" type="text/css" href="../assets/datatables/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/datatables/css/responsive.bootstrap4.min.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/datatables/css/icon-font.min.css" />
+    <!-- Datatable end-->
+
+    <script type="text/javascript" src="../assets/js/jquery/jquery.min.js"></script>
+
+
      <script>
          $(function () {
              var url = window.location.href;
@@ -112,7 +121,7 @@
 
                                 <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Overview</div>
                                 <ul class="pcoded-item pcoded-left-item">
-                                    <li class="active">
+                                    <li>
                                         <a href="Dashboard.aspx">
                                             <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
                                             <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
@@ -124,7 +133,7 @@
                                 <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Category Crud</div>
                                 <ul class="pcoded-item pcoded-left-item">
                                     <li>
-                                        <a href="form-elements-component.html">
+                                        <a href="Category.aspx">
                                             <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                                             <span class="pcoded-mtext" data-i18n="nav.form-components.main">Categories</span>
                                             <span class="pcoded-mcaret"></span>
@@ -225,7 +234,7 @@
         </div>
     </form>
     <!-- Required Jquery -->
-    <script type="text/javascript" src="../assets/js/jquery/jquery.min.js"></script>
+    
     <script type="text/javascript" src="../assets/js/jquery-ui/jquery-ui.min.js"></script>
     <script type="text/javascript" src="../assets/js/popper.js/popper.min.js"></script>
     <script type="text/javascript" src="../assets/js/bootstrap/js/bootstrap.min.js"></script>
@@ -257,6 +266,22 @@
             }
         });
     </script>
+    <!-- Added for Datatables -->
+<script src="../assets/datatables/js/jquery.dataTables.min.js"></script>
+<script src="../assets/datatables/js/dataTables.bootstrap4.min.js"></script> 
+<script src="../assets/datatables/js/dataTables.responsive.min.js"></script> 
+<script src="../assets/datatables/js/responsive.bootstrap4.min.js"></script> 
+    <!-- buttons for Export datatable-->
+<script src="../assets/datatables/js/dataTables.buttons.min.js"></script> 
+<script src="../assets/datatables/js/buttons.bootstrap4.min.js"></script> 
+<script src="../assets/datatables/js/buttons.print.min.js"></script> 
+<script src="../assets/datatables/js/buttons.html5.min.js"></script> 
+<script src="../assets/datatables/js/buttons.flash.min.js"></script> 
+<script src="../assets/datatables/js/pdfmake.min.js"></script> 
+<script src="../assets/datatables/js/vfs_fonts.js"></script>
+<!-- Datatable Setting js -->
+<script src="../assets/datatables/js/datatable-setting.js"></script>
+<!-- Datatable Setting js - Ends Here -->
 </body>
 </html>
 

@@ -1,4 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="Category.aspx.cs" Inherits="MAKH.Admin.Category" %>
+
+<%@ Import Namespace ="MAKH" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script>
         
@@ -36,7 +39,7 @@
                        <div class="col-sm-12 ">
                             <div class="card p-4">
                                 <div class="card-header">   
-                                    <div class ="row"></div>
+                                    <div class ="row flex">
 
                                     <div class = "col-sm-6 col-md-4 col-log-4">
                                         <h4 class ="sub-title">Category</h4>
@@ -78,31 +81,54 @@
 
                                                 <asp:Repeater ID="rCategory" runat="server">
                                                     <HeaderTemplate>
-                                                        <table>
+                                                        <table class="table data-table-export table-hover nowrap">
+                                                            <thead>
                                                             <tr>
-                                                                <th>Name</th>
+                                                                <th class="table-plus">Name</th>
                                                                 <th>Image</th>
                                                                 <th>IsActive</th>
                                                                 <th>CreatedDate</th>
-                                                                <th>Action</th>
+                                                                <th class="datatable-nosort">Action</th>
                                                             </tr>
-                                                        </table>
+                                                           </thead>
+                                                        <tbody>
                                                     </HeaderTemplate>
                                                     <ItemTemplate>
                                                         <tr>
-                                                            <td> <%# Eval("Name") %> </td>
-                                                            <td><%# Eval("ImageUrl") %> </td>
-                                                            <td><%# Eval("IsActive") %> </td>
+                                                            <td class="table-plus"> <%# Eval("Name") %> </td>
+                                                            <td>
+                                                                <img alt=""  width="40" src="<%# Utils.GetImageUrl( Eval("ImageUrl")) %>" />
+                                                            </td>
+                                                            <td>
+                                                                <asp:Label ID="Active" runat="server" Text='<%# Eval("IsActive")%>'></asp:Label>
+                                                                </td>
                                                             <td><%# Eval("CreatedDate") %> </td>
-                                                            <td></td>
+                                                            <td>
+                                                          <asp:LinkButton ID="linkEdit" runat="server" CssClass="badge badge-primary"
+                                                               CommandArgument='<% Eval("CategoryId") %>' CommandName="edit">
+                                                                    <i class="ti-pencil"></i>
+                                                          </asp:LinkButton>
+
+                                                          <asp:LinkButton ID="lnkDelete" Text="Delete" runat="server" CommandName="delete"
+                                                            CssClass="badge bg-danger" CommandArgument='<% Eval("CategoryId") %> '
+                                                            OnClientClick="return confirm('Do you want to delete this category?');">
+                                                              <i class="ti-trash"></i>
+                                                        </asp:LinkButton>
+
+                                                            </td>
                                                         </tr>
                                                     </ItemTemplate>
+                                                    <FooterTemplate>
+                                                        </tbody>
+                                                        </table>
+                                                    </FooterTemplate>
+                                                    
                                                 </asp:Repeater>
 
                                             </div>
                                         </div>
                                     </div>
-
+                                        </div>
                                  </div>                                                     
                            </div>
                        </div>
