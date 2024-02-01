@@ -24,6 +24,29 @@ namespace MAKH.User
                 //Add the control to the panel
                 pnlSliderUC.Controls.Add(sliderUserControl);
             }
+            if (Session["userId"] != null)
+            {
+                lbnLoginOrLogout.Text = "Logout";   
+            }
+            else
+            {
+                lbnLoginOrLogout.Text = "Login";
+            }
+        }
+
+        protected void lbnLoginOrLogout_Click(object sender, EventArgs e)
+        {
+            if (Session["userId"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+            else
+            {
+                //logout
+                Session.Abandon();
+                Response.Redirect("Login.aspx");
+            }
+
         }
     }
     }
