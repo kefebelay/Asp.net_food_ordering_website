@@ -101,7 +101,7 @@
                                                                 <img alt=""  width="40" src="<%# Utils.GetImageUrl( Eval("ImageUrl")) %>" />
                                                             </td>
                                                             <td>
-                                                                <asp:Label ID="Active" runat="server" Text='<%# Eval("IsActive")%>'></asp:Label>
+                                                                <asp:Label ID="lblIsActive" runat="server" Text='<%# Eval("IsActive")%>'></asp:Label>
                                                                 </td>
                                                             <td><%# Eval("CreatedDate") %> </td>
                                                             <td>

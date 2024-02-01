@@ -205,6 +205,21 @@ namespace MAKH.Admin
 
         protected void rCategory_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
+            if(e.Item.ItemType == ListItemType.Item|| e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                Label lbl = e.Item.FindControl("lblIsActive") as Label;
+                
+                if(lbl.Text== "True")
+                {
+                    lbl.Text = "Active";
+                    lbl.CssClass = "badge badge-success";
+                }
+                else
+                {
+                    lbl.Text = "In-Active";
+                    lbl.CssClass = "badge badge-danger";
+                }
+            }
         }
 
     }
