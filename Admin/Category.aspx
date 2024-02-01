@@ -4,7 +4,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script>
-        
+
         window.onload = function () {
             var seconds = 5;
             setTimeout(function () {
