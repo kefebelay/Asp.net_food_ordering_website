@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics.Eventing.Reader;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
 namespace MAKH.Admin
 {
+
     public partial class Category : System.Web.UI.Page
     {
         SqlConnection conn;
@@ -27,6 +29,7 @@ namespace MAKH.Admin
             }
             lblMsg.Visible = false;
         }
+
         protected void btnAddOrUpdate_Click(object sender, EventArgs e)
         {
             string actionName = string.Empty, imagePath = string.Empty, fileExtension = string.Empty;
@@ -106,11 +109,103 @@ namespace MAKH.Admin
             cbIsActive.Checked = false;
             hdnId.Value = "0";
             btnAddOrUpdate.Text = "Add";
+            imgCategory.ImageUrl = string.Empty;
         }
 
         protected void btnClear_Click(object sender, EventArgs e)
         {
             clear();
         }
+
+        protected void rCategory_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            lblMsg.Visible = false;
+
+            if (e.CommandName == "edit")
+            {
+                lblMsg.Visible = false;
+
+                if (e.CommandName == "edit")
+                {
+                    conn = new SqlConnection(Connection.GetConnectionString());
+                    cmd = new SqlCommand("Category_Crud", conn);
+                    cmd.Parameters.AddWithValue("@Action", "GETBYID");
+                    cmd.Parameters.AddWithValue("@CategoryId", e.CommandArgument);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    sda = new SqlDataAdapter(cmd);
+                    dt = new DataTable();
+                    sda.Fill(dt);
+                    txtName.Text = dt.Rows[0]["Name"].ToString();
+                    cbIsActive.Checked = Convert.ToBoolean(dt.Rows[0]["IsActive"]);
+                    imgCategory.ImageUrl = string.IsNullOrEmpty(dt.Rows[0]["ImageUrl"].ToString()) ?
+                        "../Images/No_image.png" : "../" + dt.Rows[0]["ImageUrl"].ToString();
+                    imgCategory.Height = 200;
+                    imgCategory.Width = 200;
+                    hdnId.Value = dt.Rows[0]["CategoryId"].ToString();
+                    btnAddOrUpdate.Text = "Update";
+                    LinkButton btn = e.Item.FindControl("lnkEdit") as LinkButton;
+                    btn.CssClass = "badge badge-warning";
+                }
+                else if (e.CommandName == "delete")
+                {
+                    conn = new SqlConnection(Connection.GetConnectionString());
+                    cmd = new SqlCommand("Category_Crud", conn);
+                    cmd.Parameters.AddWithValue("@Action", "DELETE");
+                    cmd.Parameters.AddWithValue("@CategoryId", e.CommandArgument);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    try
+                    {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        lblMsg.Visible = true;
+                        lblMsg.Text = "Category deleted successfully!";
+                        lblMsg.CssClass = "alert alert-success";
+                        getCategories();
+                    }
+                    catch (Exception ex)
+                    {
+                        lblMsg.Visible = true;
+                        lblMsg.Text = "Error-" + ex.Message;
+                        lblMsg.CssClass = "alert alert-danger";
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+            else if (e.CommandName == "delete")
+            {
+                conn = new SqlConnection(Connection.GetConnectionString());
+                cmd = new SqlCommand("Category_Crud", conn);
+                cmd.Parameters.AddWithValue("@Action", "DELETE");
+                cmd.Parameters.AddWithValue("@CategoryId", e.CommandArgument);
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    lblMsg.Visible = true;
+                    lblMsg.Text = "Category deleted successfully!";
+                    lblMsg.CssClass = "alert alert-success";
+                    getCategories();
+                }
+                catch (Exception ex)
+                {
+                    lblMsg.Visible = true;
+                    lblMsg.Text = "Error-" + ex.Message;
+                    lblMsg.CssClass = "alert alert-danger";
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        protected void rCategory_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+        }
+
     }
 }

@@ -28,7 +28,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div="pcoded-inner-content pt-0">
+    <div class="pcoded-inner-content pt-0">
         <div class="align-align-self-end">
             <asp:Label ID="lblMsg" runat="server" visible="false"></asp:Label>
         </div>
@@ -79,11 +79,12 @@
                                         <div class="card-block table-border-style">
                                             <div class="table-responsive">
 
-                                                <asp:Repeater ID="rCategory" runat="server">
+                                                <asp:Repeater ID="rCategory" runat="server" OnItemCommand="rCategory_ItemCommand"
+                                                     OnItemDataBound="rCategory_ItemDataBound">
                                                     <HeaderTemplate>
-                                                        <table class="table data-table-export table-hover nowrap">
+                                                        <table class="table data-table-export table-hover nowrap  text-white-50">
                                                             <thead>
-                                                            <tr>
+                                                            <tr class="text-red">
                                                                 <th class="table-plus">Name</th>
                                                                 <th>Image</th>
                                                                 <th>IsActive</th>
@@ -104,13 +105,13 @@
                                                                 </td>
                                                             <td><%# Eval("CreatedDate") %> </td>
                                                             <td>
-                                                          <asp:LinkButton ID="linkEdit" runat="server" CssClass="badge badge-primary"
-                                                               CommandArgument='<% Eval("CategoryId") %>' CommandName="edit">
+                                                          <asp:LinkButton ID="lnkEdit" Text="Edit" runat="server" CssClass="badge badge-primary"
+                                                               CommandArgument='<%# Eval("CategoryId") %>' CommandName="edit">
                                                                     <i class="ti-pencil"></i>
                                                           </asp:LinkButton>
 
                                                           <asp:LinkButton ID="lnkDelete" Text="Delete" runat="server" CommandName="delete"
-                                                            CssClass="badge bg-danger" CommandArgument='<% Eval("CategoryId") %> '
+                                                            CssClass="badge bg-danger" CommandArgument='<%# Eval("CategoryId") %> '
                                                             OnClientClick="return confirm('Do you want to delete this category?');">
                                                               <i class="ti-trash"></i>
                                                         </asp:LinkButton>
