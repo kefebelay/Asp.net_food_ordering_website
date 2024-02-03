@@ -26,11 +26,15 @@ namespace MAKH.User
             }
             if (Session["userId"] != null)
             {
-                lbnLoginOrLogout.Text = "Logout";   
+                lbnLoginOrLogout.Text = "Logout";
+                Utils utils = new Utils();
+                Session["cartCount"] = utils.cartCount(Convert.ToInt32(Session["userId"])).ToString();
+
             }
             else
             {
                 lbnLoginOrLogout.Text = "Login";
+                Session["cartCount"] = "0";
             }
         }
 

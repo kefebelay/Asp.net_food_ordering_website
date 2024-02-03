@@ -19,7 +19,7 @@
   <meta name="author" content="" />
   <link rel="shortcut icon" href="../TemplateFiles/images/favicon.png" type="">
 
-  <title> Feane </title>
+  <title> MAKH </title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="../TemplateFiles/css/bootstrap.css" />
@@ -65,7 +65,7 @@
         <nav class="navbar navbar-expand-lg custom_nav-container ">
           <a class="navbar-brand" href="index.html">
             <span>
-              Feane
+              MAKH
             </span>
           </a>
 
@@ -148,6 +148,9 @@
                   <g>
                   </g>
                 </svg>
+                  <span class="badge rounded-pill bg-warning mb-4">
+                      <%Response.Write(Session["cartCount"]); %>
+                  </span>
               </a>
               <div class="form-inline">
                 <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
@@ -186,13 +189,13 @@
               <a href="">
                 <i class="fa fa-phone" aria-hidden="true"></i>
                 <span>
-                  Call +01 1234567890
+                  Call +251 9234567890
                 </span>
               </a>
               <a href="">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
                 <span>
-                  demo@gmail.com
+                  MAKH@gmail.com
                 </span>
               </a>
             </div>
@@ -201,7 +204,7 @@
         <div class="col-md-4 footer-col">
           <div class="footer_detail">
             <a href="" class="footer-logo">
-              Feane
+              MAKH
             </a>
             <p>
               Necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with

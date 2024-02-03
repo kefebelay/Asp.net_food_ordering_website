@@ -8,6 +8,7 @@ using System.Data;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Web;
+using MAKH.Admin;
 
 namespace MAKH
 {
@@ -77,6 +78,18 @@ namespace MAKH
                 conn.Close();
             }
             return isUpdated;
-        } 
+        }
+        public int cartCount(int userId)
+        {
+            conn = new SqlConnection(Connection.GetConnectionString());
+            cmd = new SqlCommand("Cart_Crud", conn);
+            cmd.Parameters.AddWithValue("@Action", "SELECT");
+            cmd.Parameters.AddWithValue("@UserId", userId);
+            cmd.CommandType = CommandType.StoredProcedure;
+            sda = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            return dt.Rows.Count;
+        }
     }
 }
