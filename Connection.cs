@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Configuration.Internal;
+using System.Data.SqlClient;
+using System.Data;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Web;
@@ -18,6 +20,11 @@ namespace MAKH
     }
     public class Utils
     {
+
+        SqlConnection conn;
+        SqlCommand cmd;
+        SqlDataAdapter sda;
+        DataTable dt;
         public static bool IsValidExtension(string fileName)
         {
             bool isValid = false;
@@ -44,5 +51,32 @@ namespace MAKH
             }
             return url1;  
         }
+        public bool updateCartQuantity(int quantity, int productId, int userId)
+        {
+            bool isUpdated = false;
+            conn = new SqlConnection(Connection.GetConnectionString());
+            cmd = new SqlCommand("Cart_Crud", conn);
+            cmd.Parameters.AddWithValue("@Action", "UPDATE");
+            cmd.Parameters.AddWithValue("@ProductId", productId);
+            cmd.Parameters.AddWithValue("@Quantity", quantity);
+            cmd.Parameters.AddWithValue("@UserId", userId);
+            cmd.CommandType = CommandType.StoredProcedure;
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                isUpdated = true;
+            }
+            catch (Exception ex)
+            {
+                isUpdated = false;
+                System.Web.HttpContext.Current.Response.Write("<script> alert('Error = " + ex.Message + " ')<script>");
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return isUpdated;
+        } 
     }
 }
