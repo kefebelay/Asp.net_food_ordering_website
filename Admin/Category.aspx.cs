@@ -126,16 +126,12 @@ namespace MAKH.Admin
         }
 
         protected void rCategory_ItemCommand(object source, RepeaterCommandEventArgs e)
-        {
+        {            
             lblMsg.Visible = false;
-
+            conn = new SqlConnection(Connection.GetConnectionString());
             if (e.CommandName == "edit")
-            {
-                lblMsg.Visible = false;
-
-                if (e.CommandName == "edit")
                 {
-                    conn = new SqlConnection(Connection.GetConnectionString());
+                    
                     cmd = new SqlCommand("Category_Crud", conn);
                     cmd.Parameters.AddWithValue("@Action", "GETBYID");
                     cmd.Parameters.AddWithValue("@CategoryId", e.CommandArgument);
@@ -181,7 +177,7 @@ namespace MAKH.Admin
                         conn.Close();
                     }
                 }
-            }
+            
             else if (e.CommandName == "delete")
             {
                 conn = new SqlConnection(Connection.GetConnectionString());

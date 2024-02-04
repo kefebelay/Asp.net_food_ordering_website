@@ -136,13 +136,7 @@
                                             </ItemTemplate>
                                         </asp:Repeater>
                                     </div>
-                                    <%--Basic User Info Ends--%>
-
-                                    <%--Order History Starts--%>
-                                    <div class="tab-pane fade" id="connectedServices" role="tabpanel" aria-labelledby="connectedServices-tab">
-                                        <h3>Order History</h3>
-                                    </div>
-                                    <%--Basic User Info Ends--%>
+                                    <%--Basic User Info Ends--%>                                 
 
                                 </div>
 
