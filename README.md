@@ -23,7 +23,7 @@ A dynamic and responsive food ordering platform built with **ASP.NET (C#)**, **H
 | Layer        | Technology                        |
 | ------------ | ---------------------------------- |
 | **Frontend** | HTML, CSS, Bootstrap, JavaScript, jQuery |
-| **Backend**  | ASP.NET (C#), ADO.NET or MVC       |
+| **Backend**  | ASP.NET (C#)      |
 | **Database** | Microsoft SQL Server               |
 | **Authentication** | Forms Authentication or ASP.NET Identity |
 
